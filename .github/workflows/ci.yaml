@@ -1,0 +1,44 @@
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches:
+      - main
+      - dev*
+
+env:
+  NODE_ENV: ci
+
+permissions:
+    contents: read
+
+jobs:
+  CI:
+    timeout-minutes: 120
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+      - run: poetry install
+
+      - name: Test
+      - run: pytest
+
+      - name: Lint pylint
+      - run: poetry run pylint **/*.py
+
+      
+      - name: Lint flake8
+      - run: poetry run flake8

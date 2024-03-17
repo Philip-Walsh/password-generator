@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pass_gen_cli"
+name = "pass_gen"
 version = "0.1.0"
 description = ""
 authors = ["Philip Walsh <59885325+Philip-Walsh@users.noreply.github.com>"]
@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 pylint = "^3.1.0"
 flake8 = "^7.0.0"
+click = "^8.1.7"
 
 
 [build-system]

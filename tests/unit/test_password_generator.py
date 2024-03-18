@@ -1,3 +1,4 @@
+"""Unit tests for the password generator"""
 from pass_gen.core.password_generator import PasswordGenerator
 
 

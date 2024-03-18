@@ -1,59 +1,39 @@
-from random import randint, shuffle, choice
+"""Password Generator"""
+from random import shuffle, choice
+from pass_gen.utils.random_char import RandomChar
 
 
-class RandomChar:
-    def __init__(self):
-        """"""
-        self._uppercaseRange = (65, 90)
-        self._lowercaseRange = (97, 122)
-        self._numberRange = (48, 57)
-        self._specialRange = (33, 152)
-
-    def _get_random(self, tuple_range):
-        return chr(randint(*tuple_range))
-
-    def upper_char(self):
-        return self._get_random(self._uppercaseRange)
-
-    def lower_char(self):
-        return self._get_random(self._lowercaseRange)
-
-    def number_char(self):
-        return self._get_random(self._numberRange)
-
-    def special_char(self):
-        # return self._get_random(self._specialRange)
-        return choice(list("~`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/"))
-
-
-minDefault = 2
+DEFAULT_CHAR_TYPE_MIN = 2
+DEFAULT_PASSWORD_LENGTH = 12
 options = ['upper', 'lower', 'number', 'special']
 
 
 class PasswordGenerator:
+    """Contains methods to Generate a random password"""
     def __init__(self,
-                 minLength=12,
-                 upperMin=minDefault,
-                 lowerMin=minDefault,
-                 numberMin=minDefault,
-                 specialMin=minDefault,
+                 upper_min=DEFAULT_CHAR_TYPE_MIN,
+                 lower_min=DEFAULT_CHAR_TYPE_MIN,
+                 number_min=DEFAULT_CHAR_TYPE_MIN,
+                 special_min=DEFAULT_CHAR_TYPE_MIN,
                  ):
-        self.minLength = minLength
+        self.min_length = DEFAULT_PASSWORD_LENGTH
         self._random = RandomChar()
         self._min = {
-            "upper": upperMin,
-            "lower": lowerMin,
-            "number": numberMin,
-            "special": specialMin,
+            "upper": upper_min,
+            "lower": lower_min,
+            "number": number_min,
+            "special": special_min,
         }
 
     def get_char(self, char_type):
+        """Gets a random character of a given type"""
         char_function = getattr(self._random, f"{char_type}_char")
         return char_function()
 
     def generate_password(self, length=None):
+        """Returns a random password for a given length"""
         if not length:
-            length = self.minLength
+            length = self.min_length
         password = ""
         for char_type in options:
             for _ in range(self._min[char_type]):

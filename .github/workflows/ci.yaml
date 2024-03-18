@@ -51,7 +51,7 @@ jobs:
         run: poetry run pytest
 
       - name: Lint pylint
-        run: poetry run pylint **/*.py
+        run: poetry run pylint "**/*.py"
 
       - name: Lint flake8
         run: poetry run flake8

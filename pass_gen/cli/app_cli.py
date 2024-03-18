@@ -1,3 +1,4 @@
+"""Contains the Options Arguments and Commands for the CLI"""
 import click
 from pass_gen.core.password_generator import PasswordGenerator
 
@@ -5,7 +6,6 @@ from pass_gen.core.password_generator import PasswordGenerator
 @click.group()
 def cli():
     "Click password generator"
-    pass
 
 
 @cli.command(name="generate")

@@ -22,7 +22,8 @@ class RandomChar:
         return self._get_random(self._numberRange)
 
     def special_char(self):
-        return self._get_random(self._specialRange)
+        # return self._get_random(self._specialRange)
+        return choice(list("~`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/"))
 
 
 minDefault = 2

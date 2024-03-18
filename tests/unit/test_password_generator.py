@@ -20,6 +20,7 @@ class TestPasswordGenerator:
         """Test generating a password with specific strength requirements."""
         generator = PasswordGenerator()
         password = generator.generate_password(length=20)
+        print(password)
         assert any(char.isdigit() for char in password)
         assert any(char.isupper() for char in password)
         assert any(char.islower() for char in password)

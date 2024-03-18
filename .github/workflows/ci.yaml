@@ -54,4 +54,4 @@ jobs:
         run: poetry run pylint **/*.py
 
       - name: Lint flake8
-        run: poetry run flake8 **/.py
+        run: poetry run flake8
